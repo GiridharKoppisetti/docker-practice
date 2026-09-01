@@ -28,7 +28,7 @@ def init():
     count = cur.fetchone()[0]
     cur.close()
     conn.close()
-    return f"Visit logged. Total visits: {count} times"
+    return f"Visit logged. Total visits: {count} time"
 
 if __name__ == "__main__":
     time.sleep(2)  # tiny wait for db to be ready on first boot
