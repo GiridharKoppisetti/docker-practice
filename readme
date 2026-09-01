@@ -1,0 +1,7 @@
+creating a mount of shared folder in virtualbox:
+
+sudo mount -t vboxsf sf_folder ./vbox_share
+
+eg: sf_folder is the name of the folder mentioned in shared folder path.
+
+
