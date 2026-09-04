@@ -15,7 +15,7 @@ def get_conn():
 
 @app.route("/")
 def hello():
-    return "Hello from inside a container!"
+    return "Hello from inside a container! This is Giridhar's first project...."
 
 @app.route("/init")
 def init():
