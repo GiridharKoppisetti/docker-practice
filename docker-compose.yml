@@ -36,5 +36,36 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
 
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      - GF_SERVER_ROOT_URL=https://giriwithdevops.duckdns.org/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true  
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped     
+
 volumes:
   pgdata:
+  prometheus-data:
+  grafana-data:  
